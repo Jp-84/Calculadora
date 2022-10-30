@@ -23,7 +23,6 @@ function clickTeclado(e) {
     if (e.target.classList.contains('opr-igual')) {  
         total();
         resultado = [];
-        borrar();
     }
     if (e.target.classList.contains('borrar')) {
         limpiarHTML();
