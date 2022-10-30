@@ -35,12 +35,10 @@ function istCifra(e) {
     if (e.target.id === 'flecha') {
         resultado.pop();
         let num = resultado;
-        
     } else{
         let num = e.target.id;
         resultado = [...resultado, num];
         num = parseInt(resultado.join(''));
-       
     }   
     num = parseInt(resultado.join(''));     
     let cifra = document.createElement('div');
