@@ -1,24 +1,17 @@
 // Variables
-
 let resultado =[];
-// let valor 
-// let valor2 
-// let opr
-
 const pantalla = document.querySelector('#pantalla');
 const teclado = document.querySelector('#teclado');
 
 // Eventos
-
 cargarEventos();
 function cargarEventos() {
     teclado.addEventListener('click', clickTeclado); 
 }
 
 // Funciones
-
 function clickTeclado(e) {
-    if (parseInt(e.target.id) || e.target.id === '0'){
+    if (e.target.classList.contains('num') || e.target.classList.contains('flecha')){
         limpiarHTML();
         istCifra(e);
     } else if (e.target.classList.contains('operador')) {
@@ -32,10 +25,6 @@ function clickTeclado(e) {
         resultado = [];
         borrar();
     }
-    if (e.target.classList.contains('flecha')) {
-        retroceder();
-        console.log('tecla retroceder');
-    }
     if (e.target.classList.contains('borrar')) {
         limpiarHTML();
         borrar();
@@ -43,24 +32,32 @@ function clickTeclado(e) {
     }
 }
 function istCifra(e) {
-    let num = e.target.id;
-    resultado = [...resultado, num];
-    num = parseInt(resultado.join(''));
-
-    let cifra = document.createElement('div');
-    cifra.id = ('cifra')
-    cifra.textContent = num;
-    
-    limpiarHTML()
-    pantalla.appendChild(cifra)
+    if (e.target.id === 'flecha') {
+        resultado.pop();
+        let num = resultado;
+        num = parseInt(resultado.join(''));     
+        let cifra = document.createElement('div');
+        cifra.id = ('cifra')
+        cifra.textContent = num;
+        limpiarHTML();
+        pantalla.appendChild(cifra);
+    } else{
+        let num = e.target.id;
+        resultado = [...resultado, num];
+        num = parseInt(resultado.join(''));
+        let cifra = document.createElement('div');
+        cifra.id = ('cifra')
+        cifra.textContent = num;
+        limpiarHTML();
+        pantalla.appendChild(cifra);
+    }   
 }
-
 function oprMat(e) {
-    opr = e.target.id
+    opr = e.target.id;
     valor =  cifra.textContent;
 }
 function total() {
-    valor2 = cifra.textContent
+    valor2 = cifra.textContent;
     if (opr === "dividir") {
         rsd = valor/valor2; 
     }
@@ -76,33 +73,16 @@ function total() {
     let total = document.createElement('div');
     total.id = ('total')
     total.textContent = rsd;
-
     limpiarHTML();
     pantalla.appendChild(total);
 }
-function retroceder() {
-    
-}
-
 function borrar() {
     let c = document.createElement('div')
     c.textContent = 0;
     pantalla.appendChild(c);
 }
-
 function limpiarHTML() {   
     while (pantalla.firstChild) {
         pantalla.removeChild(pantalla.firstChild)
     }
 }
-
-
-// if (e.target.classList.contains('operador')) {        
-//     oprMat(e);
-//     limpiarHTML();
-//     borrar();
-//     resultado = []; 
-// } else if (parseInt(e.target.id) || e.target.id === '0') {
-//     limpiarHTML();
-//     istCifra(e);
-// }
