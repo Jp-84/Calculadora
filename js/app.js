@@ -35,22 +35,19 @@ function istCifra(e) {
     if (e.target.id === 'flecha') {
         resultado.pop();
         let num = resultado;
-        num = parseInt(resultado.join(''));     
-        let cifra = document.createElement('div');
-        cifra.id = ('cifra')
-        cifra.textContent = num;
-        limpiarHTML();
-        pantalla.appendChild(cifra);
+        
     } else{
         let num = e.target.id;
         resultado = [...resultado, num];
         num = parseInt(resultado.join(''));
-        let cifra = document.createElement('div');
-        cifra.id = ('cifra')
-        cifra.textContent = num;
-        limpiarHTML();
-        pantalla.appendChild(cifra);
+       
     }   
+    num = parseInt(resultado.join(''));     
+    let cifra = document.createElement('div');
+    cifra.id = ('cifra')
+    cifra.textContent = num;
+    limpiarHTML();
+    pantalla.appendChild(cifra);
 }
 function oprMat(e) {
     opr = e.target.id;
